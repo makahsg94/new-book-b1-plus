@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Speakout 3rd B1+ — مركز التعلّم</title>
+<meta name="description" content="موقع تفاعلي كامل لكتاب Speakout 3rd Edition B1+: صفحات الكتاب، الصوتيات، فيديوهات BBC، الفهرس، والسكربتات.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%233aa7ff'/><stop offset='1' stop-color='%237c5cff'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><path d='M20 46V22a4 4 0 0 1 4-4h14a2 2 0 0 1 2 2v9'/><path d='M20 46a4 4 0 0 1 4-4h14V29'/><path d='M40 29h6v14a4 4 0 0 1-4 4H24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/></svg>"/>
+<link rel="stylesheet" href="assets/vendor/fonts/fonts.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ✱ Sidebar (units + libraries) -->
+  <aside class="side" id="side" aria-label="الوحدات"></aside>
+  <button class="iconbtn sidex" id="sideClose" title="قفل اللوحة">✕</button>
+
+  <div class="page">
+    <!-- ✱ Top bar -->
+    <header class="top">
+      <div class="top-in">
+        <button class="iconbtn" id="menuBtn" title="الوحدات" aria-label="قائمة الوحدات">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        </button>
+        <a class="brand" href="#/">
+          <span class="logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 19V5a2 2 0 0 1 2-2h9a1 1 0 0 1 1 1v5"/><path d="M4 19a2 2 0 0 1 2-2h10V9"/><path d="M16 9h4v8a2 2 0 0 1-2 2H6"/></svg>
+          </span>
+          <span>
+            <span class="t1 en">Speakout 3<sup>rd</sup> B1+ <small>مركز التعلّم التفاعلي</small></span>
+          </span>
+        </a>
+        <nav class="navlinks">
+          <a href="#/" data-r="home">الرئيسية</a>
+          <a href="#/index" data-r="index">فهرس الكتاب</a>
+          <a href="#/audio" data-r="audio">الصوتيات</a>
+          <a href="#/videos" data-r="videos">الفيديوهات</a>
+          <a href="#/scripts" data-r="scripts">السكربتات</a>
+        </nav>
+        <div class="spacer"></div>
+        <div class="searchwrap">
+          <div class="searchbox" id="sbox">
+            <span id="sIconWrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+            <input id="searchIn" placeholder="ابحث: درس، صوت (2B)، وحدة…" autocomplete="off"/>
+            <kbd>Ctrl K</kbd>
+          </div>
+          <div class="sresults" id="sresults"></div>
+        </div>
+        <button class="iconbtn" id="themeBtn" title="مود فاتح/دايت" aria-label="تبديل الوضع"></button>
+      </div>
+    </header>
+
+    <!-- ✱ Router view -->
+    <main class="content" id="view"></main>
+
+    <footer class="foot">
+      صُنع بحُب لمتعلّمي <b class="en">Speakout 3rd Edition B1+</b> —
+      كل الأصول (PDF · الصوتيات · الفيديو) من ماتيريالك الخاصة وبتشتغل محليًا من غير نت.
+      <div style="margin-top:6px;opacity:.7">للتشغيل: افتح <b class="en">Start-Website.bat</b> وأول ما الشاشة تفتح يتعمل سيرفر محلي تلقائي.</div>
+    </footer>
+  </main>
+</div>
+
+<!-- ✱ Global audio player bar -->
+<div class="pbar" id="pbar" aria-live="polite">
+  <div class="pbar-in">
+    <div class="pmeta">
+      <span class="pw"><i></i><i></i><i></i><i></i><i></i></span>
+      <div class="pt">
+        <div class="t1" id="ptitle">—</div>
+        <div class="t2" id="psub">—</div>
+      </div>
+    </div>
+    <div class="pctrl">
+      <button class="pb" id="pprev" title="السابق (سهم يمين 5 ثواني رجوع)"><span class="svg">‹</span></button>
+      <button class="pb big" id="pplay" title="تشغيل/وقفة (Space)"><span class="svg" id="playIc">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>
+      </span></button>
+      <button class="pb" id="pnext" title="التالي"><span class="svg">›</span></button>
+      <button class="pb prepeat" id="prepeat" title="تكرار المسار">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M17 3l3 3-3 3M20 6H8a4 4 0 0 0-4 4v1M7 21l-3-3 3-3M4 18h12a4 4 0 0 0 4-4v-1"/></svg>
+      </button>
+    </div>
+    <div class="pbody">
+      <div class="seek">
+        <span class="tcode" id="tcur">0:00</span>
+        <div class="seektrack" role="slider"><div class="seekfill"></div></div>
+        <span class="tcode" id="tdur">0:00</span>
+      </div>
+    </div>
+    <select class="pspeed" id="pspeed" title="سرعة التشغيل">
+      <option value="0.75">0.75×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+      <option value="1.5">1.5×</option>
+      <option value="2">2×</option>
+    </select>
+    <input type="range" class="pvol" id="pvol" min="0" max="100" value="100" title="فوليوم"/>
+    <button class="iconbtn" id="pclose" title="قفل المشغل">✕</button>
+  </div>
+</div>
+
+<!-- ✱ Video modal -->
+<div class="ovlay" id="vmodal">
+  <div class="vbox">
+    <div class="vbhead">
+      <div>
+        <div class="t en" id="vtitle">—</div>
+        <div style="color:var(--tx3);font-size:.85em" id="vsub">—</div>
+      </div>
+      <button class="btn small ghost" id="vmarkdone" style="margin-inline-start:auto">✓ اتشاف</button>
+      <button class="xbtn" id="vclose" title="قفل">✕</button>
+    </div>
+    <video id="vvideo" controls playsinline preload="metadata"></video>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script src="js/data.js"></script>
+<script src="js/manifest.js"></script>
+<script src="js/notes.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

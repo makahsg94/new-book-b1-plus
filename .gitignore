@@ -1,0 +1,33 @@
+﻿# Dependencies and generated files
+node_modules/
+.pnpm-store/
+.yarn/
+.next/
+.nuxt/
+.output/
+.svelte-kit/
+dist/
+build/
+coverage/
+.cache/
+.vite/
+.turbo/
+.parcel-cache/
+.tmp/
+temp/
+tmp/
+
+# Local secrets and machine-specific files
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# IDE and local tooling
+.vscode/
+.idea/
